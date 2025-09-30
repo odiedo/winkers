@@ -3,40 +3,42 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Winkers | Gallery </title>
+    <title>Winkers | Gallery</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-	<!-- CSS here -->
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-	<link rel="stylesheet" href="assets/css/magnific-popup.css">
-	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-	<link rel="stylesheet" href="assets/css/themify-icons.css">
-	<link rel="stylesheet" href="assets/css/slick.css">
-	<link rel="stylesheet" href="assets/css/nice-select.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+
+    <!-- Optimized CSS for faster loading -->
+    <style>
+        .gallery-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; }
+        .overlay-content { color: white; text-align: center; opacity: 0; transition: opacity 0.3s; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0, 0, 0, 0.9); }
+        .modal-content { position: relative; margin: 5% auto; width: 80%; max-width: 900px; }
+        .modal-img { width: 100%; height: auto; }
+        .modal-prev, .modal-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2em; cursor: pointer; background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 50%; }
+        .modal-prev { left: 10px; }
+        .modal-next { right: 10px; }
+        .modal-close { position: absolute; top: 10px; right: 20px; color: white; font-size: 2em; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <!-- ? Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
+    <!-- Preloader Start -->
+    <div id="preloader-active" style="display: none;">
+        <div class="preloader d-flex align-items-center justify-content-center" style="background: #000; width: 100%; height: 100%; position: fixed; z-index: 9999;">
             <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.png" alt="">
-                </div>
+                <div class="preloader-circle" style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
+    <!-- Preloader End -->
     <header>
         <!-- Header Start -->
         <div class="header-area header-transparent">
@@ -46,7 +48,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt="Winkers Club Logo" style="height: 5vh; width: 5hw;"></a>
+                                <a href="index.html"><img src="assets/img/logo/logo.png" alt="Winkers Club Logo" style="height: 5vh; width: 5vw;"></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -80,14 +82,14 @@
         <!-- Header End -->
     </header>
     <main>
-        <!--? Hero Start -->
+        <!-- Hero Start -->
         <div class="slider-area2">
-            <div class="slider-height2 d-flex align-items-center">
+            <div class="slider-height2 d-flex align-items-center" style="height: 300px; background-color: #f5f5f5;">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap hero-cap2 text-center pt-70">
-                                <h2>our gallery</h2>
+                                <h2 style="color: #333; font-size: 2.5em; font-weight: bold;">Our Gallery</h2>
                             </div>
                         </div>
                     </div>
@@ -95,69 +97,59 @@
             </div>
         </div>
         <!-- Hero End -->
-        <!--? Gallery Area Start -->
-        <div class="gallery-area section-padding30">
+        <!-- Gallery Area Start -->
+        <div class="gallery-area section-padding30" style="padding: 50px 0;">
             <div class="container-fluid p-0 fix">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="box snake mb-30">
-                            <div class="gallery-img big-img" style="background-image: url(assets/img/gallery/gallery1.png);"></div>
-                            <div class="overlay">
-                                <div class="overlay-content">
-                                    <a href="gallery.html"><i class="ti-arrow-top-right"></i></a>
-                                    <h3>Best fitness gallery</h3>
-                                    <p>Fitness, Body</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="box snake mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(assets/img/gallery/gallery2.png);"></div>
-                                    <div class="overlay">
-                                        <div class="overlay-content">
-                                            <a href="gallery.html"><i class="ti-arrow-top-right"></i></a>
-                                            <h3>Best fitness gallery</h3>
-                                            <p>Fitness, Body</p>
-                                        </div>
+                <div class="row" style="margin: 0;">
+                    <div class="col-lg-12" style="padding: 0;">
+                        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
+                                <img src="assets/img/gallery/gallery1.png" alt="Gallery Image 1" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="0">
+                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
+                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
+                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Party Vibes</h3>
+                                        <p style="margin: 0; font-size: 1em;">Nightlife, Celebration</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="box snake mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(assets/img/gallery/gallery3.png);"></div>
-                                    <div class="overlay">
-                                        <div class="overlay-content">
-                                            <a href="gallery.html"><i class="ti-arrow-top-right"></i></a>
-                                            <h3>Best fitness gallery</h3>
-                                            <p>Fitness, Body</p>
-                                        </div>
+                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
+                                <img src="assets/img/gallery/gallery2.png" alt="Gallery Image 2" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="1">
+                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
+                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
+                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Choma Nights</h3>
+                                        <p style="margin: 0; font-size: 1em;">Dining, Food</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="box snake mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(assets/img/gallery/gallery4.png);"></div>
-                                    <div class="overlay">
-                                        <div class="overlay-content">
-                                            <a href="gallery.html"><i class="ti-arrow-top-right"></i></a>
-                                            <h3>Best fitness gallery</h3>
-                                            <p>Fitness, Body</p>
-                                        </div>
+                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
+                                <img src="assets/img/gallery/gallery3.png" alt="Gallery Image 3" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="2">
+                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
+                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
+                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Live Music</h3>
+                                        <p style="margin: 0; font-size: 1em;">Events, Entertainment</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="box snake mb-30">
-                                    <div class="gallery-img small-img" style="background-image: url(assets/img/gallery/gallery5.png);"></div>
-                                    <div class="overlay">
-                                        <div class="overlay-content">
-                                            <a href="gallery.html"><i class="ti-arrow-top-right"></i></a>
-                                            <h3>Best fitness gallery</h3>
-                                            <p>Fitness, Body</p>
-                                        </div>
+                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
+                                <img src="assets/img/gallery/gallery4.png" alt="Gallery Image 4" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="3">
+                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
+                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
+                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Private Parties</h3>
+                                        <p style="margin: 0; font-size: 1em;">Events, Celebration</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
+                                <img src="assets/img/gallery/gallery5.png" alt="Gallery Image 5" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="4">
+                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
+                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
+                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
+                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Cocktail Nights</h3>
+                                        <p style="margin: 0; font-size: 1em;">Drinks, Nightlife</p>
                                     </div>
                                 </div>
                             </div>
@@ -167,6 +159,16 @@
             </div>
         </div>
         <!-- Gallery Area End -->
+
+        <!-- Modal -->
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <img class="modal-img" id="modalImage" src="" alt="Modal Image">
+                <span class="modal-prev">&lt;</span>
+                <span class="modal-next">&gt;</span>
+            </div>
+        </div>
     </main>
     <footer>
         <!-- Footer Start -->
@@ -180,7 +182,7 @@
                                 <div class="single-footer-caption mb-50">
                                     <!-- logo -->
                                     <div class="footer-logo">
-                                        <a href="index.html"><center><img src="assets/img/logo/logo2_footer.png" alt="Winkers Club Footer Logo"  style="height: 200px; width: 200px;"></center></a>
+                                        <a href="index.html"><center><img src="assets/img/logo/logo2_footer.png" alt="Winkers Club Footer Logo" style="height: 200px; width: 200px;"></center></a>
                                     </div>
                                     <div class="footer-tittle">
                                         <div class="footer-pera">
@@ -197,15 +199,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Footer Bottom -->
-                <div class="footer-bottom">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-lg-12">
-                            <div class="footer-copy-right text-center">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <!-- Footer Bottom -->
+                    <div class="footer-bottom">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-lg-12">
+                                <div class="footer-copy-right text-center">
+                                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Fun-Corp Developer</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,47 +222,86 @@
     </div>
 
     <!-- JS here -->
-
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-    <!-- Jquery, Popper, Bootstrap -->
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            document.getElementById('preloader-active').style.display = 'none';
+        });
 
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
-    <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalPrev = document.querySelector('.modal-prev');
+        const modalNext = document.querySelector('.modal-next');
+        const modalClose = document.querySelector('.modal-close');
+        let currentIndex = 0;
 
-    <!-- Date Picker -->
-    <script src="./assets/js/gijgo.min.js"></script>
-    <!-- Nice-select, sticky -->
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
-    
-    <!-- counter , waypoint -->
-    <script src="./assets/js/jquery.counterup.min.js"></script>
-    <script src="./assets/js/waypoints.min.js"></script>
-    <script src="./assets/js/jquery.countdown.min.js"></script>
+        galleryItems.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                showImage();
+                modal.style.display = 'block';
+            });
+        });
 
+        modalPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryItems.length - 1;
+            showImage();
+        });
 
-    <script src="./assets/js/hover-direction-snake.min.js"></script>
+        modalNext.addEventListener('click', () => {
+            currentIndex = (currentIndex < galleryItems.length - 1) ? currentIndex + 1 : 0;
+            showImage();
+        });
 
-    <!-- contact js -->
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-    
-    <!-- Jquery Plugins, main Jquery -->	
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
-    
-    </body>
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryItems.length - 1;
+                showImage();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex < galleryItems.length - 1) ? currentIndex + 1 : 0;
+                showImage();
+            } else if (e.key === 'Escape') {
+                modal.style.display = 'none';
+            }
+        });
+
+        function showImage() {
+            modalImage.src = galleryItems[currentIndex].src;
+            modalImage.alt = galleryItems[currentIndex].alt;
+        }
+
+        // Hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.querySelector('.overlay').style.opacity = '1';
+                item.querySelector('.overlay-content').style.opacity = '1';
+                item.querySelector('img').style.transform = 'scale(1.1)';
+            });
+            item.addEventListener('mouseout', () => {
+                item.querySelector('.overlay').style.opacity = '0';
+                item.querySelector('.overlay-content').style.opacity = '0';
+                item.querySelector('img').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</body>
 </html>
