@@ -27,6 +27,148 @@
         .modal-prev { left: 10px; }
         .modal-next { right: 10px; }
         .modal-close { position: absolute; top: 10px; right: 20px; color: white; font-size: 2em; cursor: pointer; }
+        /* Responsive Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            display: block;
+            border-radius: 16px;
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,rgba(0,0,0,0.0) 60%,rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .gallery-item:hover .overlay,
+        .gallery-item:focus .overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .overlay-content {
+            color: #fff;
+            padding: 24px;
+            width: 100%;
+            text-align: left;
+        }
+        .overlay-content h3 {
+            margin: 0 0 4px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .overlay-content p {
+            margin: 0;
+            font-size: 1em;
+            opacity: 0.85;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.92);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            position: relative;
+            background: #181818;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+            max-width: 90vw;
+            max-height: 90vh;
+            width: 600px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-img {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 18px 18px 0 0;
+            background: #222;
+        }
+        .modal-details {
+            padding: 24px;
+            color: #fff;
+            width: 100%;
+            text-align: left;
+        }
+        .modal-details h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        .modal-details p {
+            margin: 0;
+            font-size: 1em;
+            opacity: 0.85;
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px; right: 24px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: #f33; }
+        .modal-prev, .modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 2.2em;
+            cursor: pointer;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            padding: 10px;
+            z-index: 2;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .modal-prev { left: 18px; }
+        .modal-next { right: 18px; }
+        .modal-prev:hover, .modal-next:hover { background: #333; }
+        @media (max-width: 700px) {
+            .modal-content { width: 98vw; }
+            .gallery-item img { height: 180px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -102,57 +244,8 @@
             <div class="container-fluid p-0 fix">
                 <div class="row" style="margin: 0;">
                     <div class="col-lg-12" style="padding: 0;">
-                        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                                <img src="assets/img/gallery/gallery1.png" alt="Gallery Image 1" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="0">
-                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
-                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
-                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Party Vibes</h3>
-                                        <p style="margin: 0; font-size: 1em;">Nightlife, Celebration</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                                <img src="assets/img/gallery/gallery2.png" alt="Gallery Image 2" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="1">
-                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
-                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
-                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Choma Nights</h3>
-                                        <p style="margin: 0; font-size: 1em;">Dining, Food</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                                <img src="assets/img/gallery/gallery3.png" alt="Gallery Image 3" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="2">
-                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
-                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
-                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Live Music</h3>
-                                        <p style="margin: 0; font-size: 1em;">Events, Entertainment</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                                <img src="assets/img/gallery/gallery4.png" alt="Gallery Image 4" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="3">
-                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
-                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
-                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Private Parties</h3>
-                                        <p style="margin: 0; font-size: 1em;">Events, Celebration</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="gallery-item" style="position: relative; overflow: hidden; border-radius: 10px;">
-                                <img src="assets/img/gallery/gallery5.png" alt="Gallery Image 5" style="width: 100%; height: 400px; object-fit: cover; transition: transform 0.3s;" data-index="4">
-                                <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center;">
-                                    <div class="overlay-content" style="color: white; text-align: center; opacity: 0; transition: opacity 0.3s;">
-                                        <a href="#" style="color: white; font-size: 2em;"><i class="ti-arrow-top-right"></i></a>
-                                        <h3 style="margin: 10px 0; font-size: 1.5em;">Cocktail Nights</h3>
-                                        <p style="margin: 0; font-size: 1em;">Drinks, Nightlife</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="gallery-grid" id="galleryGrid">
+                            <!-- Gallery items will be rendered by JS for lazy loading and accessibility -->
                         </div>
                     </div>
                 </div>
@@ -161,12 +254,16 @@
         <!-- Gallery Area End -->
 
         <!-- Modal -->
-        <div id="imageModal" class="modal">
+        <div id="imageModal" class="modal" aria-modal="true" role="dialog" tabindex="-1">
             <div class="modal-content">
-                <span class="modal-close">&times;</span>
-                <img class="modal-img" id="modalImage" src="" alt="Modal Image">
-                <span class="modal-prev">&lt;</span>
-                <span class="modal-next">&gt;</span>
+                <button class="modal-close" aria-label="Close">&times;</button>
+                <span class="modal-prev" aria-label="Previous image">&lt;</span>
+                <img class="modal-img" id="modalImage" src="" alt="">
+                <span class="modal-next" aria-label="Next image">&gt;</span>
+                <div class="modal-details">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDesc"></p>
+                </div>
             </div>
         </div>
     </main>
@@ -296,12 +393,181 @@
                 item.querySelector('img').style.transform = 'scale(1)';
             });
         });
+
+        // Gallery Data
+        const galleryData = [
+            {
+                src: "assets/img/gallery/gallery1.png",
+                alt: "Party Vibes",
+                title: "Party Vibes",
+                desc: "Nightlife, Celebration"
+            },
+            {
+                src: "assets/img/gallery/gallery2.png",
+                alt: "Choma Nights",
+                title: "Choma Nights",
+                desc: "Dining, Food"
+            },
+            {
+                src: "assets/img/gallery/gallery3.png",
+                alt: "Live Music",
+                title: "Live Music",
+                desc: "Events, Entertainment"
+            },
+            {
+                src: "assets/img/gallery/gallery4.png",
+                alt: "Private Parties",
+                title: "Private Parties",
+                desc: "Events, Celebration"
+            },
+            {
+                src: "assets/img/gallery/gallery5.png",
+                alt: "Cocktail Nights",
+                title: "Cocktail Nights",
+                desc: "Drinks, Nightlife"
+            }
+        ];
+
+        // Render gallery items
+        const galleryGrid = document.getElementById('galleryGrid');
+        galleryData.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.tabIndex = 0;
+            div.setAttribute('role', 'button');
+            div.setAttribute('aria-label', item.title);
+            div.innerHTML = `
+                <img src="${item.src}" alt="${item.alt}" loading="lazy" data-index="${idx}">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                </div>
+            `;
+            galleryGrid.appendChild(div);
+        });
+
+        // Modal logic
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalPrev = document.querySelector('.modal-prev');
+        const modalNext = document.querySelector('.modal-next');
+        const modalClose = document.querySelector('.modal-close');
+        let currentIndex = 0;
+
+        function openModal(idx) {
+            currentIndex = idx;
+            showImage();
+            modal.classList.add('active');
+            modal.focus();
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        function showImage() {
+            const item = galleryData[currentIndex];
+            modalImage.src = item.src;
+            modalImage.alt = item.alt;
+            modalTitle.textContent = item.title;
+            modalDesc.textContent = item.desc;
+        }
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % galleryData.length;
+            showImage();
+        }
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+            showImage();
+        }
+
+        // Click events
+        document.querySelectorAll('.gallery-item').forEach((item, idx) => {
+            item.addEventListener('click', () => openModal(idx));
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') openModal(idx);
+            });
+        });
+        modalPrev.addEventListener('click', prevImage);
+        modalNext.addEventListener('click', nextImage);
+        modalClose.addEventListener('click', closeModal);
+
+        // Keyboard navigation
+        modal.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') prevImage();
+            else if (e.key === 'ArrowRight') nextImage();
+            else if (e.key === 'Escape') closeModal();
+        });
+
+        // Click outside modal-content closes modal
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Touch swipe navigation for mobile
+        let touchStartX = null;
+        modalImage.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        modalImage.addEventListener('touchend', (e) => {
+            if (touchStartX === null) return;
+            let dx = e.changedTouches[0].screenX - touchStartX;
+            if (dx > 60) prevImage();
+            else if (dx < -60) nextImage();
+            touchStartX = null;
+        });
+
+        // Accessibility: trap focus in modal
+        modal.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const focusable = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+                const first = focusable[0], last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    last.focus();
+                    e.preventDefault();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    first.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Lazy load images (already using loading="lazy" in <img>)
+
+        // ...existing code...
     </script>
     <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
+        <!-- JS here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+        <script src="./assets/js/gijgo.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+        <script src="./assets/js/jquery.counterup.min.js"></script>
+        <script src="./assets/js/waypoints.min.js"></script>
+        <script src="./assets/js/jquery.countdown.min.js"></script>
+        <script src="./assets/js/hover-direction-snake.min.js"></script>
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
 </body>
 </html>
